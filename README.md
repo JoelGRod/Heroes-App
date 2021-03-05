@@ -1,5 +1,11 @@
 # HeroesApp
 
+This is a simple app for managing heroes using children routes and lazy load.
+
+Application deployed in: 
+
+Based on the projects by Fernando Herrera - https://www.udemy.com/course/angular-fernando-herrera/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
 
 ## Development server
