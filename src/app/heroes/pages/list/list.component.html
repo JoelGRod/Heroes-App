@@ -4,36 +4,15 @@
 
 <div fxLayout="row wrap"
         fxLayoutAlign="center"
-        fxLayoutGap="20px">
+        fxLayoutGap="20px grid">
     <div fxFlex="100" 
             fxFlex.md="30"
             fxFlex.lg="20"
             fxFlex.xl="15"
-            *ngFor="let heroe of heroes">
-        <mat-card class="card">
-            <mat-card-header>
-                <mat-card-title> {{ heroe.superhero }} </mat-card-title>
-                <mat-card-subtitle>{{ heroe.alter_ego }}</mat-card-subtitle>
-            </mat-card-header>
-        
-            <img mat-card-image src="assets/heroes/{{ heroe.id }}.jpg" alt="Photo of a Shiba Inu">
-        
-            <mat-card-content>
-                <h3>
-                    {{ heroe.publisher }}
-                </h3>
-                <p>
-                    <strong>First Appearance:</strong> {{ heroe.first_appearance }}
-                    <br>
-                    <strong>Character:</strong> {{ heroe.characters }}
-                </p>
-            </mat-card-content>
-        
-            <mat-card-actions>
-                <button mat-flat-button color="primary">More...</button>
-                <button mat-flat-button color="warn">Edit</button>
-            </mat-card-actions>
-        </mat-card>
+            *ngFor="let hero of heroes">
+
+        <app-hero-card [hero]="hero"></app-hero-card>
+
     </div>
 </div>
 

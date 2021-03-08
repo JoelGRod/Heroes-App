@@ -6,13 +6,7 @@ import { Hero } from '../../interfaces/heroes.interface';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styles: [
-    `
-    mat-card {
-      margin-bottom: 20px;
-    }
-    `
-  ]
+  styles: []
 })
 export class ListComponent implements OnInit {
 
