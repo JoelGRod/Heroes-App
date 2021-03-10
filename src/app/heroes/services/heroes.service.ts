@@ -12,6 +12,7 @@ export class HeroesService {
 
   private _heroes: Hero[] = [];
   private _suggestions: Hero[] = [];
+  private _last_added_hero!: Hero;
   private _api_url: string = environment.api_url;
 
   get heroes(): Hero[] {
@@ -20,6 +21,10 @@ export class HeroesService {
 
   get suggestions(): Hero[] {
     return [...this._suggestions];
+  }
+
+  get last_added_hero(): Hero {
+    return {...this._last_added_hero};
   }
 
   constructor(private http: HttpClient) { }
@@ -38,6 +43,12 @@ export class HeroesService {
   get_heroes_suggestion(term: string): void {
     this.http.get<Hero[]>(`${this._api_url}/heroes/?q=${term}&_limit=6`).subscribe(
       heroes => this._suggestions = heroes
+    );
+  }
+
+  add_hero(hero: Hero): void {
+    this.http.post<Hero>(`${this._api_url}/heroes/`, hero).subscribe(
+      resp_hero => this._last_added_hero = resp_hero 
     );
   }
 }
