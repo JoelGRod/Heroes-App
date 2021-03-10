@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+// RXJS
+import { switchMap } from 'rxjs/operators';
+// Interfaces
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
+// Services
 import { HeroesService } from '../../services/heroes.service';
 
 @Component({
@@ -10,6 +14,7 @@ import { HeroesService } from '../../services/heroes.service';
     `
     .hero-img {
       width: 100%;
+      border-radius: 5px;
     }
     `
   ]
@@ -37,22 +42,28 @@ export class AddComponent implements OnInit {
     id: ''
   }
 
-  get last_added_hero(): Hero {
-    return this.heroes_service.last_added_hero;
-  }
-
   constructor(private activated_route: ActivatedRoute,
-              private heroes_service: HeroesService) { }
+              private heroes_service: HeroesService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.activated_route.params.subscribe(
-      ({id}) => console.log(id)
-    );
+    this.activated_route.params
+    .pipe(switchMap(({id}) => this.heroes_service.get_heroe(id)))
+    .subscribe( (hero: Hero) => this.hero = hero );
   }
 
   save_hero() {
     if(this.hero.superhero.trim().length === 0) return;
-    this.heroes_service.add_hero(this.hero);
+
+    if(this.hero.id === '') {
+      this.heroes_service.add_hero(this.hero).subscribe(
+        (hero: Hero) => this.router.navigate(['/heroes/edit', hero.id])
+      );
+    } else {
+      this.heroes_service.modify_hero(this.hero).subscribe(
+        (hero: Hero) => console.log('Hero modified...')
+      );
+    }
   }
 
 }

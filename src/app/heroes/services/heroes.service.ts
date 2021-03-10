@@ -12,7 +12,6 @@ export class HeroesService {
 
   private _heroes: Hero[] = [];
   private _suggestions: Hero[] = [];
-  private _last_added_hero!: Hero;
   private _api_url: string = environment.api_url;
 
   get heroes(): Hero[] {
@@ -23,21 +22,12 @@ export class HeroesService {
     return [...this._suggestions];
   }
 
-  get last_added_hero(): Hero {
-    return {...this._last_added_hero};
-  }
-
   constructor(private http: HttpClient) { }
 
   get_heroes(): void {
     this.http.get<Hero[]>(`${this._api_url}/heroes`).subscribe(
-      heroes => this._heroes = heroes 
+      heroes => this._heroes = heroes
     )
-  }
-
-  // Return observable (switchmap test)
-  get_heroe(id: string): Observable<Hero> {
-    return this.http.get<Hero>(`${this._api_url}/heroes/${id}`);
   }
 
   get_heroes_suggestion(term: string): void {
@@ -46,9 +36,16 @@ export class HeroesService {
     );
   }
 
-  add_hero(hero: Hero): void {
-    this.http.post<Hero>(`${this._api_url}/heroes/`, hero).subscribe(
-      resp_hero => this._last_added_hero = resp_hero 
-    );
+  // Return observable (switchmap test)
+  get_heroe(id: string): Observable<Hero> {
+    return this.http.get<Hero>(`${this._api_url}/heroes/${id}`);
+  }
+
+  add_hero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(`${this._api_url}/heroes/`, hero);
+  }
+
+  modify_hero(hero: Hero): Observable<Hero> {
+    return this.http.put<Hero>(`${this._api_url}/heroes/${hero.id}`, hero);
   }
 }

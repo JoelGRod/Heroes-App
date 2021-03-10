@@ -21,12 +21,12 @@
 
         </div>
 
-        <mat-form-field fxFlex="100" appearance="standard">
+        <mat-form-field appearance="standard">
             <mat-label>Characters</mat-label>
             <input matInput type="text" [(ngModel)]="hero.characters">
         </mat-form-field>
 
-        <mat-form-field fxFlex="100" appearance="standard">
+        <mat-form-field appearance="standard">
             <mat-label>Publisher</mat-label>
             <mat-select [(ngModel)]="hero.publisher" required>
                 <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
@@ -35,12 +35,12 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field fxFlex="100" appearance="standard">
+        <mat-form-field appearance="standard">
             <mat-label>First Appearance</mat-label>
             <input matInput type="text" [(ngModel)]="hero.first_appearance" required>
         </mat-form-field>
 
-        <mat-form-field fxFlex="100" appearance="standard">
+        <mat-form-field appearance="standard">
             <mat-label>Image URL</mat-label>
             <input matInput type="url" [(ngModel)]="hero.alt_img" required>
         </mat-form-field>
