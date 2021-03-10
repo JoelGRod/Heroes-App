@@ -11,10 +11,15 @@ import { environment } from 'src/environments/environment';
 export class HeroesService {
 
   private _heroes: Hero[] = [];
+  private _suggestions: Hero[] = [];
   private _api_url: string = environment.api_url;
 
   get heroes(): Hero[] {
     return [...this._heroes];
+  }
+
+  get suggestions(): Hero[] {
+    return [...this._suggestions];
   }
 
   constructor(private http: HttpClient) { }
@@ -28,5 +33,11 @@ export class HeroesService {
   // Return observable (switchmap test)
   get_heroe(id: string): Observable<Hero> {
     return this.http.get<Hero>(`${this._api_url}/heroes/${id}`);
+  }
+
+  get_heroes_suggestion(term: string): void {
+    this.http.get<Hero[]>(`${this._api_url}/heroes/?q=${term}&_limit=6`).subscribe(
+      heroes => this._suggestions = heroes
+    );
   }
 }
