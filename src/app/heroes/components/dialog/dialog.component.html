@@ -1,0 +1,11 @@
+<h1>Are you sure?</h1>
+<hr>
+<p>You are about to delete the record - <strong>{{ data.superhero }}</strong> 
+    <br>
+    do you wish to continue?
+</p>
+
+<div fxLayout="row" fxLayoutGap="0.5rem">
+    <button mat-raised-button color="warn" (click)="delete()">Yes!</button>
+    <button mat-raised-button color="primary" (click)="cancel()">No! Cancel</button>
+</div>

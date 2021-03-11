@@ -17,12 +17,12 @@
         </p>
     </mat-card-content>
 
-    <mat-card-actions>
-        <button mat-flat-button 
+    <mat-card-actions fxLayout="row" fxLayoutGap="0.5rem">
+        <button fxFlex="48" mat-flat-button 
                 color="primary"
                 [routerLink]="['/heroes/', hero.id]"
                 >More...</button>
-        <button mat-flat-button 
+        <button fxFlex="48" mat-flat-button 
                 color="warn"
                 [routerLink]="['/heroes/edit/', hero.id]"
                 >Edit</button>

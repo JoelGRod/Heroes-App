@@ -4,17 +4,16 @@
 
     <div fxFlex="50" fxLayout="column">
 
-        <div fxLayout="row" fxLayout.xs="column" 
-                            fxLayoutGap.md="1rem grid" 
-                            fxLayoutGap.lg="1rem grid"
-                            fxLayoutGap.xl="1rem grid">
+        <div fxLayout="row" fxLayout.xs="column">
             
-            <mat-form-field fxFlex="50" appearance="standard">
+            <mat-form-field fxFlex="48" appearance="standard">
                 <mat-label>Super hero</mat-label>
                 <input matInput type="text" [(ngModel)]="hero.superhero" required>
             </mat-form-field>
 
-            <mat-form-field fxFlex="50" appearance="standard">
+            <span class="spacer"></span>
+
+            <mat-form-field fxFlex="48" appearance="standard">
                 <mat-label>Alter Ego</mat-label>
                 <input matInput type="text" [(ngModel)]="hero.alter_ego" required>
             </mat-form-field>
@@ -45,10 +44,20 @@
             <input matInput type="url" [(ngModel)]="hero.alt_img" required>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="save_hero()">
-            <mat-icon>save</mat-icon>
-            Save
-        </button>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="0.5rem">
+            <button fxFlex="48" mat-raised-button color="primary" (click)="save_hero()">
+                <mat-icon>save</mat-icon>
+                Save
+            </button>
+
+            <span class="spacer"></span>
+            
+            <button *ngIf="hero.id" fxFlex="48" mat-raised-button color="warn" (click)="delete_hero()">
+                <mat-icon>delete</mat-icon>
+                Delete
+            </button>
+        </div>
+
 
     </div>
 

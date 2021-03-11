@@ -1,10 +1,10 @@
-<mat-grid-list cols="1" *ngIf="!hero; else hero">
+<mat-grid-list cols="1" *ngIf="!specific_hero; else div_hero">
     <mat-grid-tile>
         <mat-spinner></mat-spinner>
     </mat-grid-tile>
 </mat-grid-list>
 
-<ng-template #hero>
+<ng-template #div_hero>
 
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px grid" fxLayoutAlign="center">
         <div fxFlex="50">

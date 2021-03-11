@@ -36,7 +36,7 @@ export class HeroesService {
     );
   }
 
-  // Return observable (switchmap test)
+  // Return observable (switchmap test or ts needs)
   get_heroe(id: string): Observable<Hero> {
     return this.http.get<Hero>(`${this._api_url}/heroes/${id}`);
   }
@@ -47,5 +47,9 @@ export class HeroesService {
 
   modify_hero(hero: Hero): Observable<Hero> {
     return this.http.put<Hero>(`${this._api_url}/heroes/${hero.id}`, hero);
+  }
+
+  delete_hero(id: string): Observable<any> {
+    return this.http.delete<any>(`${this._api_url}/heroes/${id}`);
   }
 }
