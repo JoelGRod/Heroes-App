@@ -41,7 +41,10 @@
 
         <span class="spacer"></span>
 
-        <button mat-button >
+        <span>{{ logged_user.usuario }}</span>
+
+        <button mat-flat-button
+                (click)="logout()">
             logout
         </button>
     </mat-toolbar>

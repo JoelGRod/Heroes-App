@@ -1,1 +1,14 @@
-<p>login works!</p>
+<mat-grid-list cols="1">
+    <mat-grid-tile>
+        <button mat-flat-button 
+                color="primary"
+                (click)="login()">
+            Login
+        </button>
+        <button mat-flat-button 
+                color="primary"
+                (click)="login_w_auth()">
+            Login w/auth
+        </button>
+    </mat-grid-tile>
+</mat-grid-list>
